@@ -13,9 +13,12 @@ const Table = () => {
     const init = async () => {
       try {
         setData((p) => ({ ...p, loading: true }));
-        const data = await getData();
-        setData((p) => ({ ...p, error: "", data: data }));
+        // const data = await getData();
+        const response = await fetch("/api/getdata");
+        const res = await response.json();
+        setData((p) => ({ ...p, error: "", data: res }));
       } catch (error) {
+        console.log(error);
         setData((p) => ({ ...p, data: {}, error: error.toString() }));
       } finally {
         setData((p) => ({ ...p, loading: false }));
@@ -29,13 +32,13 @@ const Table = () => {
   if (data.error) {
     return <p>{JSON.stringify(data.error)}</p>;
   }
-  console.log(data.data)
+  console.log(data.data);
   return (
     <div>
       <table className="w-1/2 m-6">
         <tbody>
           <tr>
-            <th>Strike  t Price</th>
+            <th>Strike t Price</th>
             <th>CE / PE</th>
             <th>Ask price</th>
           </tr>
