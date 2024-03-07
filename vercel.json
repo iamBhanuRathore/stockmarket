@@ -1,8 +1,7 @@
 {
-    "functions": {
-      "api/*": {
-        "maxDuration": 15 
-      }
+  "functions": {
+    "api/*": {
+      "maxDuration": 10
     }
+  }
 }
-  
